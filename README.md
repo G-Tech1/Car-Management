@@ -2,8 +2,9 @@
 
 Team:
 
-* Person 1 - Which microservice?
 * Brandon- Auto Sales
+- Gilan- Auto Service
+
 
 ## Design
 
