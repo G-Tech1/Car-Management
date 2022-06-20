@@ -26,15 +26,15 @@ class Record(models.Model):
     auto = models.ForeignKey(
         AutoVO,
         related_name='records',
-        on_delete=models.CASCADE
+        on_delete=models.PROTECT
         )
     sales_person = models.ForeignKey(
         SalesPerson,
         related_name='records',
-        on_delete=models.CASCADE
+        on_delete=models.PROTECT
     )
     customer = models.ForeignKey(
         Customer,
         related_name='records',
-        on_delete=models.CASCADE,
+        on_delete=models.PROTECT,
     )

@@ -63,6 +63,11 @@ def api_sales(request):
             )
             response.status_code = 400
             return response
-            
-            
+  
+# @require_http_methods(["DELETE", "GET","PUT"])  
+# def api_sale(request):
+#     if request.method == "GET":
+#         try:
+#             sales = SalesPerson.objects.get()  
+    
         
