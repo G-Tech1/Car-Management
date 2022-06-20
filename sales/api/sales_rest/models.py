@@ -13,6 +13,7 @@ class AutoVO(models.Model):
 class SalesPerson(models.Model):
     name = models.CharField(max_length=100)
     employee_number = models.PositiveIntegerField()
+    sales = models.ManyToManyField('Record', blank=True)
  
     
 class Customer(models.Model):
