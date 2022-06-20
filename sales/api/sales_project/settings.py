@@ -27,6 +27,7 @@ DEBUG = True
 
 
 INSTALLED_APPS = [
+    'sales_rest.apps.SalesRestConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
