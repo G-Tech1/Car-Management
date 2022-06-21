@@ -5,9 +5,13 @@ from django.views.decorators.http import require_http_methods
 import json
 
 from common.json import ModelEncoder
-from .models import ServiceAppointment, Technician
+from .models import AutomobileVO, ServiceAppointment, Technician
 
 # Create your views here.
+
+class AutomobileVOEncoder(ModelEncoder):
+    model= AutomobileVO
+    properties = ["vin"]
 
 class TechnicianEncoder(ModelEncoder):
     model = Technician
@@ -17,6 +21,7 @@ class TechnicianEncoder(ModelEncoder):
 class ServiceAppointmentEncoder(ModelEncoder):
     model = ServiceAppointment
     properties = [
+        'id',
         'vin',
         'customer',
         'date',
