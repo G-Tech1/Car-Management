@@ -47,8 +47,7 @@ class RecordEncoder(ModelEncoder):
         "sales_person": SalesPersonEncoder(),
         "auto": AutoVOEncoder(),
     }
-    # def get_extra_data(self, o):
-    #     return {"vin": o.auto.vin}
+
 
 
 @require_http_methods(["GET", "POST"])
