@@ -13,7 +13,7 @@ class AutoVO(models.Model):
 class SalesPerson(models.Model):
     name = models.CharField(max_length=100)
     employee_number = models.PositiveIntegerField()
-    sales = models.ManyToManyField('Record', blank=True)
+    # sales = models.ManyToManyField('Record', blank=True)
  
     
 class Customer(models.Model):
@@ -38,3 +38,4 @@ class Record(models.Model):
         related_name='records',
         on_delete=models.PROTECT,
     )
+    sales_price = models.CharField(max_length=100, null=True, blank=True)
