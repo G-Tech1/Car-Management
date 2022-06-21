@@ -1,6 +1,7 @@
 {
     "python.analysis.extraPaths": [
-        "./sales/api"
+        "./service/api",  "./sales/api"
     ],
+    
     "python.formatting.provider": "black"
 }
