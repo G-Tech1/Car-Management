@@ -3,6 +3,7 @@ import CustomerForm from './CustomerForm';
 import SalesForm from './SalesForm';
 import MainPage from './MainPage';
 import Nav from './Nav';
+import TechnicianForm from './TechnicianForm';
 
 function App(props) {
   return (
