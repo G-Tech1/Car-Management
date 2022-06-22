@@ -23,11 +23,12 @@ class ServiceForm extends React.Component {
   }
 
   async componentDidMount() {
-    const url = 'http://localhost:8000/api/technician/';
+    const url = 'http://localhost:8080/api/technician/';
     const response = await fetch(url);
     if (response.ok) {
       const data = await response.json();
-      this.setState({ technicians: data.conferences });
+      this.setState({ technicians: data.technician });
+      console.log(data)
     }
   }
 
@@ -36,11 +37,12 @@ class ServiceForm extends React.Component {
   async handleSubmit(event) {
     event.preventDefault();
     const data = {...this.state};
-    data.employee_number= data.employeeNumber
-    delete data.employeeNumber;
+    console.log(data)
+    delete data.technicians;
+    console.log(data)
 
-
-    const technicianUrl = 'http://localhost:8080/api/technician/';
+    const serviceUrl = 'http://localhost:8080/api/service/';
+    console.log(data)
     const fetchOptions = {
       method: 'post',
       body: JSON.stringify(data),
@@ -48,14 +50,20 @@ class ServiceForm extends React.Component {
         'Content-Type': 'application/json',
       },
     };
-    const technicianResponse = await fetch(technicianUrl, fetchOptions);
-    if (technicianResponse.ok) {
-        const newTechnician = await technicianResponse.json();
-        console.log(newTechnician);
+
+    const serviceResponse = await fetch(serviceUrl, fetchOptions);
+    console.log(serviceResponse)
+    if (serviceResponse.ok) {
+        const newService = await serviceResponse.json();
+        console.log(newService);
         
         const cleared = {
-            name:'',
-            employeeNumber:''
+            vin: '',
+            customer: '',
+            date: '',
+            time: '',
+            description: '',
+            technician:'',
         };
         
         this.setState(cleared);
@@ -63,14 +71,34 @@ class ServiceForm extends React.Component {
   }
 
 
-  handleChangeName(event) {
+  handleChangeVin(event) {
     const value = event.target.value;
-    this.setState({ name: value });
+    this.setState({ vin: value });
   }
 
-  handleChangeEmail(event) {
+  handleChangeCustomer(event) {
     const value = event.target.value;
-    this.setState({ employeeNumber: value });
+    this.setState({ customer: value });
+  }
+
+  handleChangeDate(event) {
+    const value = event.target.value;
+    this.setState({ date: value });
+  }
+
+  handleChangeTime(event) {
+    const value = event.target.value;
+    this.setState({ time: value });
+  }
+
+  handleChangeDescription(event) {
+    const value = event.target.value;
+    this.setState({ description: value });
+  }
+
+  handleChangeTechnician(event) {
+    const value = event.target.value;
+    this.setState({ technician: value });
   }
 
   render() {
@@ -78,17 +106,41 @@ class ServiceForm extends React.Component {
       <div className="row">
         <div className="offset-3 col-6">
           <div className="shadow p-4 mt-4">
-            <h1>Add A Technician</h1>
-            <form onSubmit={this.handleSubmit} id="create-location-form">
+            <h1>Create a Service Appointment</h1>
+            <form onSubmit={this.handleSubmit} id="create-service-form">
               <div className="form-floating mb-3">
-                <input value={this.state.name} onChange={this.handleNameChange} placeholder="Name" required type="text" name="name" id="name" className="form-control" />
-                <label htmlFor="name">Name</label>
+                <input value={this.state.vin} onChange={this.handleChangeVin} placeholder="VIN" required type="text" name="vin" id="vin" className="form-control" />
+                <label htmlFor="vin">VIN</label>
               </div>
               <div className="form-floating mb-3">
-                <input value={this.state.roomCount} onChange={this.handleEmployeeNumberChange} placeholder="Employee Number" required type="number" name="employee_number" id="employee_number" className="form-control" />
-                <label htmlFor="employee_number">Room count</label>
+                <input value={this.state.customer} onChange={this.handleChangeCustomer} placeholder="Customer" required type="text" name="customer" id="customer" className="form-control" />
+                <label htmlFor="customer">Customer</label>
               </div>
-              <button className="btn btn-primary">Add</button>
+              <div className="form-floating mb-3">
+                <input value={this.state.date} onChange={this.handleChangeDate} placeholder="Date" required type="date" name="date" id="date" className="form-control" />
+                <label htmlFor="date">Customer</label>
+              </div>
+              <div className="form-floating mb-3">
+                <input value={this.state.time} onChange={this.handleChangeTime} placeholder="Time" required type="time" name="time" id="time" className="form-control" />
+                <label htmlFor="time">Customer</label>
+              </div>
+              <div className="form-floating mb-3">
+                <input value={this.state.description} onChange={this.handleChangeDescription} placeholder="Description" required type="text" name="description" id="description" className="form-control" />
+                <label htmlFor="description">Description</label>
+              </div>
+              <div className="mb-3">
+                <select value={this.state.technician} onChange={this.handleChangeTechnician} required name="technician" id="technician" className="form-select">
+                    <option value="">Choose a technician</option>
+                    {this.state.technicians.map(technician => {
+                        return (
+                        <option key={technician.id} value={technician.id}>
+                            {technician.employee_number}
+                        </option>
+                        );
+                    })}
+                    </select>
+              </div>
+              <button className="btn btn-primary">Create</button>
             </form>
           </div>
         </div>
@@ -98,4 +150,4 @@ class ServiceForm extends React.Component {
   
 }
 
-export default TechnicianForm;
+export default ServiceForm;
