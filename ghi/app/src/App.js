@@ -4,6 +4,10 @@ import MainPage from './MainPage';
 import Nav from './Nav';
 import TechnicianForm from './TechnicianForm';
 import ServiceForm from './ServiceForm';
+import ManufacturerForm from './ManufacturerForm';
+import VehicleModelForm from './VehicleModelForm';
+import AutomobileForm from './AutomobileForm';
+
 
 function App(props) {
   return (
@@ -13,6 +17,9 @@ function App(props) {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/Customer/" element={<CustomerForm />} />
+          <Route path="manufacturer" element={<ManufacturerForm />} />
+          <Route path="model" element={<VehicleModelForm />} />
+          <Route path="automobile" element={<AutomobileForm />} />
           <Route path="service">
             <Route path="technician" element={<TechnicianForm />} />
             <Route path="" element={<ServiceForm />} />

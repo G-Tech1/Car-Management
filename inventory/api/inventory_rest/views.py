@@ -176,11 +176,12 @@ def api_vehicle_models(request):
                 safe=False,
             )
         except:
-            response = JsonResponse(
-                {"message": "Could not create the vehicle model"}
-            )
-            response.status_code = 400
-            return response
+            pass
+            # response = JsonResponse(
+            #     {"message": "Could not create the vehicle model"}
+            # )
+            # response.status_code = 400
+            # return response
 
 
 @require_http_methods(["DELETE", "GET", "PUT"])
