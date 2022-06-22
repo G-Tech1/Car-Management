@@ -10,7 +10,7 @@ class CustomerForm extends React.Component {
         };
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleAddressChange = this.handleAddressChange.bind(this);
-        this.handlephoneNumberChange = this.handlephoneNumberChange.bind(this);
+        this.handlePhoneNumberChange = this.handlePhoneNumberChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -58,7 +58,7 @@ class CustomerForm extends React.Component {
         this.setState({ address: value });
     }
 
-    handlephoneNumberChange(event) {
+    handlePhoneNumberChange(event) {
         const value = event.target.value;
         this.setState({ phoneNumber: value });
     }
@@ -80,7 +80,7 @@ class CustomerForm extends React.Component {
                                 <label htmlFor="address">Address</label>
                             </div>
                             <div className="form-floating mb-3">
-                                <input value={this.state.phoneNumber} onChange={this.handlephoneNumberChange} placeholder="phoneNumber" required type="text" name="phoneNumber" id="phone_number" className="form-control" />
+                                <input value={this.state.phoneNumber} onChange={this.handlePhoneNumberChange} placeholder="phoneNumber" required type="text" name="phoneNumber" id="phone_number" className="form-control" />
                                 <label htmlFor="phoneNumber">Phone Number</label>
                             </div>
                             <button className="btn btn-primary">Create</button>
