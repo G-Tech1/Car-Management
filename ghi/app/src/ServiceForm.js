@@ -133,8 +133,8 @@ class ServiceForm extends React.Component {
                     <option value="">Choose a technician</option>
                     {this.state.technicians.map(technician => {
                         return (
-                        <option key={technician.id} value={technician.id}>
-                            {technician.employee_number}
+                        <option key={technician.id} value={technician.employee_number}>
+                            {technician.name}
                         </option>
                         );
                     })}
