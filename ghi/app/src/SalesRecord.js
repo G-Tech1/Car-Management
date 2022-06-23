@@ -1,25 +1,28 @@
 function SalesRecord(props) {
-    return (
-        <table className="table table-striped">
-          <thead>
-            <tr>
-              <th>Buyer</th>
-              <th>Seller</th>
-              <th>Car vin number</th>
-              <th>Price</th>
+  return (
+    <table className="table table-striped">
+      <thead>
+        <tr>
+          <th>Buyer</th>
+          <th>Seller</th>
+          <th>Car vin number</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        {props.records.map(record => {
+          return (
+            <tr key={record.href}>
+              <td>{record.customer.name}</td>
+              <td>{record.sales_person.name}</td>
+              <td>{record.auto.vin}</td>
+              <td>{record.sales_price}</td>
             </tr>
-          </thead>
-          <tbody>
-            {props..map(attendee => {
-              return (
-                <tr key={attendee.href}>
-                  <td>{ attendee.name }</td>
-                  <td>{ attendee.conference }</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      );
-    }
+          );
+        })}
+      </tbody>
+    </table>
+  );
 }
+
+export default SalesRecord;

@@ -65,10 +65,12 @@ class NewSaleForm extends React.Component {
         data.sales_person = data.salesPerson;
         data.sales_price = data.salesPrice;
         delete data.salesPerson;
-        delete data.salesPersons
+        delete data.salesPersons;
         delete data.autos;
+        // delete data.auto;
+        // delete data.customer;
         delete data.customers;
-        delete data.salesPrice
+        delete data.salesPrice;
 
         const recordURL = 'http://localhost:8090/api/records/'
         const fetchConfig = {
