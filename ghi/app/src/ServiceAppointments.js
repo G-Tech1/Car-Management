@@ -13,7 +13,7 @@ import React from 'react';
     
 
     async componentDidMount(){
-        const url = "http://localhost:8080/api/service/";
+        const url = "http://localhost:8080/api/service/submitted";
         const response = await fetch(url);
         if (response.ok) {
             const data = await response.json()
@@ -28,7 +28,7 @@ import React from 'react';
         }
     }
 
-    handleDeleteClick(serviceid) {
+    handleClick(serviceid) {
         const newService = [...this.state.services];
         const index = this.state.services.findIndex((service) => service.id === serviceid);
         

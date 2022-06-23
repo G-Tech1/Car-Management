@@ -49,6 +49,7 @@ import React from 'react';
             <th>Time</th>
             <th>Description</th>
             <th>Technician</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
@@ -61,6 +62,7 @@ import React from 'react';
             <td>{appointment.time}</td>
             <td>{appointment.description}</td>
             <td>{appointment.technician.name}</td>
+            <td>{appointment.status.name}</td>
             </tr>
             );
         })}
