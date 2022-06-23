@@ -47,12 +47,13 @@ class App extends React.Component {
     }
     if (response.ok){
       const data = await response2.json();
-      console.log(data)
       this.setState({salesPerson: data.sales_person})
     }
     if (response.ok){
       const data = await response3.json();
-      this.setState({manufacturers: data.manufacturer})
+      this.setState({manufacturers: data.manufacturers})
+      console.log(this)
+      
     }
     if (response.ok){
       const data = await response4.json();
@@ -75,7 +76,7 @@ class App extends React.Component {
             <Route path="records/new" element={<NewSaleForm />} />
             <Route path="records" element={<SalesRecord records={this.state.records} />} />
             <Route path="/sales/records" element={<SalesPersonHistory person ={this.state.salesPerson} records ={this.state.records}/>} />
-            <Route path="manufacturers" element={<ManufacturerList manufacturer ={this.state.manufacturers}/>} />
+            <Route path="manufacturers" element={<ManufacturerList manufacturers ={this.state.manufacturers}/>} />
             <Route path="manufacturer/new" element={<ManufacturerForm />} />
             <Route path="model" element={<VehicleModelForm />} />
             <Route path="automobile" element={<AutomobileForm />} />
