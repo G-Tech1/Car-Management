@@ -1,7 +1,6 @@
 import React from 'react';
 
-
-    class ServiceAppointmentList extends React.Component {
+    class ServiceHistory extends React.Component {
         constructor(props) {
             super(props);
             this.state = { 
@@ -28,6 +27,9 @@ import React from 'react';
 
     render() {
     return (
+        <>
+        <h1>Service History</h1>
+        <input type="text" ></input><button className="btn btn-primary me-1">search</button>
         <table className="table table-striped">
         <thead>
           <tr>
@@ -54,9 +56,10 @@ import React from 'react';
         })}
         </tbody>
       </table>
+      </>
     );
         }
 
   }
   
-  export default ServiceAppointmentList;
+  export default ServiceHistory;
