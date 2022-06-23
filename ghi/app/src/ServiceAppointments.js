@@ -28,7 +28,7 @@ import React from 'react';
         }
     }
 
-    handleClick(serviceid) {
+    handleDeleteClick(serviceid) {
         const newService = [...this.state.services];
         const index = this.state.services.findIndex((service) => service.id === serviceid);
         

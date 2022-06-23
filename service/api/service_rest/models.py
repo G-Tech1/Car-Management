@@ -20,7 +20,7 @@ class Status(models.Model):
     Status is a Value Object and, therefore, does not have a
     direct URL to view it.
     """
-    id = models.PositiveSmallIntegerField(primary_key=True)
+    
     name = models.CharField(max_length=10, unique=True)
 
     def __str__(self):
@@ -28,14 +28,6 @@ class Status(models.Model):
 
 
 class ServiceAppointment(models.Model):
-
-    @classmethod
-    def create(cls, **kwargs):
-        kwargs["status"] = Status.objects.get(name="SUBMITTED")
-        service = cls(**kwargs)
-        service.save()
-        return service
-
     vin = models.CharField(max_length=17, unique=True)
     customer = models.CharField(max_length=200)
     date = models.DateField(null=True, default=True)
@@ -46,12 +38,19 @@ class ServiceAppointment(models.Model):
         on_delete=models.CASCADE,
         related_name= "service_appointment",
     )
-
     status = models.ForeignKey(
         Status,
-        related_name="presentations",
-        on_delete=models.PROTECT, 
+        related_name="service_appointment",
+        on_delete=models.PROTECT,
+        default = 1
     )
+
+    @classmethod
+    def create(cls, **kwargs):
+        kwargs["status"] = Status.objects.get(name="SUBMITTED")
+        service = cls(**kwargs)
+        service.save()
+        return service
 
     def complete(self):
         status = Status.objects.get(name="COMPLETED")

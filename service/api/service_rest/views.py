@@ -5,7 +5,7 @@ from django.views.decorators.http import require_http_methods
 import json
 
 from common.json import ModelEncoder
-from .models import AutomobileVO, ServiceAppointment, Technician
+from .models import AutomobileVO, ServiceAppointment, Technician, Status
 
 # Create your views here.
 
@@ -17,6 +17,9 @@ class TechnicianEncoder(ModelEncoder):
     model = Technician
     properties = ['id','name', 'employee_number']
 
+class StatusEncoder(ModelEncoder):
+    model = Status
+    properties = ['name']
 
 class ServiceAppointmentEncoder(ModelEncoder):
     model = ServiceAppointment
@@ -27,15 +30,14 @@ class ServiceAppointmentEncoder(ModelEncoder):
         'date',
         'time',
         'description',
-        'technician'
+        'technician',
+        'status'
     ]
 
     encoders = {
-        'technician': TechnicianEncoder()
+        'technician': TechnicianEncoder(),
+        'status': StatusEncoder()
     }
-    
-    def get_extra_data(self, o):
-        return {"status": o.status.name}
 
     def get_extra_data(self, o):
         try:
@@ -126,7 +128,18 @@ def api_show_technician(request, pk):
             return response        
 
 
-@require_http_methods(['GET', 'POST'])
+@require_http_methods(['GET'])
+def api_submitted_service(request):
+    status = Status.objects.get(name="SUBMITTED")
+    service = ServiceAppointment.objects.filter(status=status)
+    return JsonResponse(
+        {"service": service},
+        encoder=ServiceAppointmentEncoder,
+        safe=False
+    )
+
+
+@require_http_methods(['GET', 'POST',])
 def api_list_service(request):
     """
     Returns a dictionary with a single key "service" which
@@ -140,6 +153,7 @@ def api_list_service(request):
                 "time": time,
                 "description": description,
                 "technician": technician's name,
+                "status": appointments' status
 
             },
             ...
@@ -166,7 +180,7 @@ def api_list_service(request):
             )
 
 
-        service = ServiceAppointment.objects.create(**content)
+        service = ServiceAppointment.create(**content)
         return JsonResponse(
             service,
             encoder=ServiceAppointmentEncoder,
@@ -225,3 +239,37 @@ def api_show_service(request, pk):
             response = JsonResponse({"message": "Does not exist"})
             response.status_code = 404
             return response
+
+
+@require_http_methods(["PUT"])
+def api_complete_service(request, pk):
+    service = ServiceAppointment.objects.get(id=pk)
+    service.complete()
+    # body = {
+    #     "presenter_name": presentation.presenter_name,
+    #     "presenter_email": presentation.presenter_email,
+    #     "title": presentation.title,
+    # }
+    # send_message("presentation_approvals", body)
+    return JsonResponse(
+        service,
+        encoder=ServiceAppointmentEncoder,
+        safe=False,
+    )
+
+
+@require_http_methods(["PUT"])
+def api_cancel_service(request, pk):
+    service = ServiceAppointment.objects.get(id=pk)
+    service.cancel()
+    # body = {
+    #     "presenter_name": presentation.presenter_name,
+    #     "presenter_email": presentation.presenter_email,
+    #     "title": presentation.title,
+    # }
+    # send_message("presentation_rejections", body)
+    return JsonResponse(
+        service,
+        encoder=ServiceAppointmentEncoder,
+        safe=False,
+    )
