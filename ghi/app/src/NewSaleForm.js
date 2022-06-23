@@ -37,7 +37,7 @@ class NewSaleForm extends React.Component {
 
 
             });
-            
+
         }
         if (response2.ok) {
             const data = await response2.json();
@@ -137,23 +137,23 @@ class NewSaleForm extends React.Component {
                                     <option value="">Choose a sales person</option>
                                     {/* {console.log(this)} */}
                                     {this.state.salesPersons.map(person => {
-                                        return(
+                                        return (
                                             <option key={person.id} value={person.id}>{person.name}</option>
                                         )
                                     })}
                                 </select>
-                                </div>
-                                <div className="form-floating mb-3">
-                                    <select onChange={this.handleCustomerChange} required name="customer" id="customer" className="form-select">
-                                        <option value="">Choose a customer</option>
-                                        {this.state.customers.map(customer => {
-                                            return(
-                                                <option key={customer.id} value={customer.id}>{customer.name}</option>
-                                            )
-                                        })}
-                                    </select>
-                                </div>
-                                <div className="form-floating mb-3">
+                            </div>
+                            <div className="form-floating mb-3">
+                                <select onChange={this.handleCustomerChange} required name="customer" id="customer" className="form-select">
+                                    <option value="">Choose a customer</option>
+                                    {this.state.customers.map(customer => {
+                                        return (
+                                            <option key={customer.id} value={customer.id}>{customer.name}</option>
+                                        )
+                                    })}
+                                </select>
+                            </div>
+                            <div className="form-floating mb-3">
                                 <input value={this.state.salesPrice} onChange={this.handleSalesPriceChange} placeholder="sales_price" required type="text" name="sales_price" id="sales_price" className="form-control" />
                                 <label htmlFor="phoneNumber">Sales Price</label>
                             </div>

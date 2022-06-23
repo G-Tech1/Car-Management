@@ -17,17 +17,17 @@ class AutomobileForm extends React.Component {
 
   async componentDidMount() {
     const url = 'http://localhost:8100/api/models/'
-    const response = await fetch (url);
+    const response = await fetch(url);
     if (response.ok) {
-        const data = await response.json();
-        this.setState({ models: data.models});
-        console.log(data);
+      const data = await response.json();
+      this.setState({ models: data.models });
+      console.log(data);
     }
   }
 
   async handleSubmit(event) {
     event.preventDefault();
-    const data = {...this.state};
+    const data = { ...this.state };
     delete data.models
     console.log(data);
 
@@ -43,16 +43,16 @@ class AutomobileForm extends React.Component {
     };
     const automobileResponse = await fetch(automobileUrl, fetchOptions);
     if (automobileResponse.ok) {
-        const newAutomobile = await automobileResponse.json();
-        console.log(newAutomobile);
-        
-        const cleared = {
-            color: '',
-            year: '',
-            vin: '',
-            model_id: '',
-        };
-        this.setState(cleared);
+      const newAutomobile = await automobileResponse.json();
+      console.log(newAutomobile);
+
+      const cleared = {
+        color: '',
+        year: '',
+        vin: '',
+        model_id: '',
+      };
+      this.setState(cleared);
     }
   }
 
@@ -60,7 +60,7 @@ class AutomobileForm extends React.Component {
   handleChange(event) {
     const newState = {};
     newState[event.target.id] = event.target.value;
-    this.setState( newState );
+    this.setState(newState);
   }
 
 
@@ -85,15 +85,15 @@ class AutomobileForm extends React.Component {
               </div>
               <div className="mb-3">
                 <select value={this.state.model_id} onChange={this.handleChange} required name="model_id" id="model_id" className="form-select">
-                    <option value="">Choose a model</option>
-                    {this.state.models.map(model => {
-                        return (
-                        <option key={model.id} value={model.id}>
-                            {model.name}
-                        </option>
-                        );
-                    })}
-                    </select>
+                  <option value="">Choose a model</option>
+                  {this.state.models.map(model => {
+                    return (
+                      <option key={model.id} value={model.id}>
+                        {model.name}
+                      </option>
+                    );
+                  })}
+                </select>
               </div>
               <button className="btn btn-primary">Create</button>
             </form>
@@ -102,7 +102,7 @@ class AutomobileForm extends React.Component {
       </div>
     );
   }
-  
+
 }
 
 export default AutomobileForm;
