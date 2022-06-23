@@ -1,22 +1,22 @@
-function ManufacturerList (props) {
+function ManufacturerList({manufacturers}) {
     return (
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th>Name</th>
-          </tr>
-        </thead>
-        <tbody>
-          {props.manufacturer.map(manufacturers => {
-            return (
-              <tr key={manufacturers.href}>
-                <td>{manufacturers.customer.name}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+        <table className="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>            
+                {manufacturers.map(manufacturer => {
+                    return (
+                        <tr key={manufacturer.href}>
+                            <td>{manufacturer.name}</td>
+                        </tr>
+                    );
+                })}
+            </tbody>
+        </table>
     );
-  }
-  
-  export default ManufacturerList;
+}
+
+export default ManufacturerList;
