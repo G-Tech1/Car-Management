@@ -1,16 +1,14 @@
 import React from "react";
 
-class CustomerForm extends React.Component {
+class SalesForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             name: '',
-            address: '',
-            phoneNumber: '',
+            employeeNumber: '',
         };
         this.handleNameChange = this.handleNameChange.bind(this);
-        this.handleAddressChange = this.handleAddressChange.bind(this);
-        this.handlePhoneNumberChange = this.handlePhoneNumberChange.bind(this);
+        this.handleEmployeeNumberChange = this.handleEmployeeNumberChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -24,10 +22,10 @@ class CustomerForm extends React.Component {
     async handleSubmit(event) {
         event.preventDefault();
         const data = { ...this.state };
-        data.phone_number = data.phoneNumber;
-        delete data.phoneNumber;
+        data.employee_number = data.employeeNumber;
+        delete data.employeeNumber;
 
-        const customerURL = 'http://localhost:8090/api/customers/'
+        const customerURL = 'http://localhost:8090/api/sales/'
         const fetchConfig = {
             method: 'post',
             body: JSON.stringify(data),
@@ -37,15 +35,14 @@ class CustomerForm extends React.Component {
         };
         const response = await fetch(customerURL, fetchConfig);
         if (response.ok) {
-            const newCustomer = await response.json();
-            console.log(newCustomer)
+            const newEmployee = await response.json();
+            console.log(newEmployee)
 
             const cleared = {
                 name: '',
-                address: '',
-                phoneNumber: '',
+                employeeNumber: ''
             }
-            this.setState(cleared);
+            this.setState(cleared)
         }
     }
     handleNameChange(event) {
@@ -53,14 +50,9 @@ class CustomerForm extends React.Component {
         this.setState({ name: value });
     }
 
-    handleAddressChange(event) {
+    handleEmployeeNumberChange(event) {
         const value = event.target.value;
-        this.setState({ address: value });
-    }
-
-    handlePhoneNumberChange(event) {
-        const value = event.target.value;
-        this.setState({ phoneNumber: value });
+        this.setState({ employeeNumber: value });
     }
 
 
@@ -69,19 +61,15 @@ class CustomerForm extends React.Component {
             <div className="row">
                 <div className="offset-3 col-6">
                     <div className="shadow p-4 mt-4">
-                        <h1>Create a new customer</h1>
-                        <form onSubmit={this.handleSubmit} id="create-Customer-form">
+                        <h1>Create a new employee</h1>
+                        <form onSubmit={this.handleSubmit} id="create-Sales-form">
                             <div className="form-floating mb-3">
                                 <input value={this.state.name} onChange={this.handleNameChange} placeholder="Name" required type="text" name="name" id="name" className="form-control" />
                                 <label htmlFor="name">Name</label>
                             </div>
                             <div className="form-floating mb-3">
-                                <input value={this.state.address} onChange={this.handleAddressChange} placeholder="address" required type="text" name="address" id="address" className="form-control" />
-                                <label htmlFor="address">Address</label>
-                            </div>
-                            <div className="form-floating mb-3">
-                                <input value={this.state.phoneNumber} onChange={this.handlePhoneNumberChange} placeholder="phoneNumber" required type="text" name="phoneNumber" id="phone_number" className="form-control" />
-                                <label htmlFor="phoneNumber">Phone Number</label>
+                                <input value={this.state.employeeNumber} onChange={this.handleEmployeeNumberChange} placeholder="employeeNumber" required type="text" name="employeeNumber" id="employee_number" className="form-control" />
+                                <label htmlFor="phoneNumber">Employee Number</label>
                             </div>
                             <button className="btn btn-primary">Create</button>
                         </form>
@@ -93,11 +81,4 @@ class CustomerForm extends React.Component {
     }
 }
 
-export default CustomerForm;
-
-
-
-
-
-
-
+export default SalesForm;

@@ -107,6 +107,8 @@ def api_records(request):
         )
     else:
         content = json.loads(request.body)
+        # print("content",content)
+        # print("instance",isinstance(content['auto'],str))
         content = {
             **content,
             "auto": AutoVO.objects.get(id=content["auto"]),
