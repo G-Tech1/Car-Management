@@ -6,7 +6,10 @@ import React from 'react';
             super(props);
             this.state = { 
                 services: []
-            }};
+            }
+        
+        this.handleClick = this.handleClick.bind(this);
+        };
     
 
     async componentDidMount(){
@@ -25,6 +28,24 @@ import React from 'react';
         }
     }
 
+    handleClick(serviceid) {
+        const newService = [...this.state.services];
+        const index = this.state.services.findIndex((service) => service.id === serviceid);
+        
+        console.log(newService)
+        console.log(index)
+
+        newService.splice(index, 1);
+
+        console.log(newService)
+
+        this.setState({
+            services: newService
+        }); 
+
+        console.log(newService)
+        console.log(this.state.services)
+    }
     
 
     render() {
@@ -48,7 +69,7 @@ import React from 'react';
         {this.state.services.map(appointment => {
             return (
             <tr key= {appointment.id}>
-            <td></td>
+            <td>{JSON.stringify(appointment.vip)}</td>
             <td>{appointment.vin}</td>
             <td>{appointment.customer}</td>
             <td>{appointment.date}</td>
@@ -56,8 +77,8 @@ import React from 'react';
             <td>{appointment.description}</td>
             <td>{appointment.technician.name}</td>
             <td>
-            <button onClick={null} type="button" className="btn btn-outline-danger me-2">Cancel</button>
-            <button onClick={null} type="button" className="btn btn-outline-success">Completed</button>
+            <button onClick={() => this.handleClick(appointment.id)} type="button" className="btn btn-outline-danger me-2">Cancel</button>
+            <button onClick={() => this.handleClick(appointment.id)} type="button" className="btn btn-outline-success">Completed</button>
             </td>
             </tr>
             );

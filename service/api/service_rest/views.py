@@ -33,6 +33,14 @@ class ServiceAppointmentEncoder(ModelEncoder):
     encoders = {
         'technician': TechnicianEncoder()
     }
+    
+    def get_extra_data(self, o):
+        try:
+            AutomobileVO.objects.get(vin=o.vin)
+            return {"vip": True}
+        except:
+            return {"vip": False}
+            
 
 @require_http_methods(['GET', 'POST'])
 def api_list_technician(request):
