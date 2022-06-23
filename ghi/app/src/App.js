@@ -15,17 +15,19 @@ import React from "react"
 import SalesRecord from './SalesRecord';
 import SalesPersonHistory from './SalePersonHistory';
 import ManufacturerList from './ManufacturerList';
+import AutoMobileList from './AutoMobilesList';
+import VehicleList from './VehicleList';
 
 
 class App extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props)
-    this.state ={
+    this.state = {
       records: [],
       salesPerson: [],
       manufacturers: [],
-      vehicles: [],
-      automobiles: [],
+      models: [],
+      autos: [],
     }
   }
 
@@ -35,7 +37,7 @@ class App extends React.Component {
     const url3 = 'http://localhost:8100/api/manufacturers/'
     const url4 = 'http://localhost:8100/api/models/'
     const url5 = 'http://localhost:8100/api/automobiles/'
-    
+
     const response = await fetch(url)
     const response2 = await fetch(url2)
     const response3 = await fetch(url3)
@@ -43,28 +45,27 @@ class App extends React.Component {
     const response5 = await fetch(url5)
     if (response.ok) {
       const data = await response.json();
-      this.setState({records: data.records})
+      this.setState({ records: data.records })
     }
-    if (response.ok){
+    if (response.ok) {
       const data = await response2.json();
-      this.setState({salesPerson: data.sales_person})
+      this.setState({ salesPerson: data.sales_person })
     }
-    if (response.ok){
+    if (response.ok) {
       const data = await response3.json();
-      this.setState({manufacturers: data.manufacturers})
-      console.log(this)
-      
+      this.setState({ manufacturers: data.manufacturers })
+
     }
-    if (response.ok){
+    if (response.ok) {
       const data = await response4.json();
-      this.setState({vehicles: data.vehicles})
+      this.setState({ models: data.models })
+    }
+    if (response.ok) {
+      const data = await response5.json();
+      this.setState({ autos: data.autos })
+    }
   }
-  if (response.ok){
-    const data = await response5.json();
-    this.setState({automobiles: data.automobiles})
-  }
-}
-  render(){
+  render() {
     return (
       <BrowserRouter>
         <Nav />
@@ -75,18 +76,20 @@ class App extends React.Component {
             <Route path="sales/new" element={<SalesForm />} />
             <Route path="records/new" element={<NewSaleForm />} />
             <Route path="records" element={<SalesRecord records={this.state.records} />} />
-            <Route path="/sales/records" element={<SalesPersonHistory person ={this.state.salesPerson} records ={this.state.records}/>} />
-            <Route path="manufacturers" element={<ManufacturerList manufacturers ={this.state.manufacturers}/>} />
+            <Route path="/sales/records" element={<SalesPersonHistory person={this.state.salesPerson} records={this.state.records} />} />
+            <Route path="manufacturers" element={<ManufacturerList manufacturers={this.state.manufacturers} />} />
+            <Route path="automobiles" element={<AutoMobileList autos={this.state.autos} />} />
+            <Route path="models" element={<VehicleList models={this.state.models} />} />
             <Route path="manufacturer/new" element={<ManufacturerForm />} />
             <Route path="model" element={<VehicleModelForm />} />
             <Route path="automobile" element={<AutomobileForm />} />
             <Route path="service">
               <Route path="technician" element={<TechnicianForm />} />
-              <Route path="appointments" element={<ServiceAppointments/>} />
-              <Route path="history" element={<ServiceHistory/>} />  
+              <Route path="appointments" element={<ServiceAppointments />} />
+              <Route path="history" element={<ServiceHistory />} />
               <Route path="new" element={<ServiceForm />} />
             </Route>
-            </Routes>
+          </Routes>
         </div>
       </BrowserRouter>
     );

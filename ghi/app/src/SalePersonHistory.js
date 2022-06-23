@@ -7,6 +7,7 @@ function SalesPersonHistory(props) {
         {props.person.map(person => {
           return (
             <option key={person.id} value={person.id}>{person.name}</option>
+            
           )
         })}
 
@@ -24,7 +25,7 @@ function SalesPersonHistory(props) {
           </tr>
         </thead>
         <tbody>
-          {props.records.filter(x => x.name === props.records ).map(record => {
+          {props.records.filter(x => x.name === props.person.id ).map(record => {
             return (
               <tr key={record.href}>
                 <td>{record.customer.name}</td>

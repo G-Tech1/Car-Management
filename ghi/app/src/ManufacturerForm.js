@@ -13,7 +13,7 @@ class ManufacturerForm extends React.Component {
 
   async handleSubmit(event) {
     event.preventDefault();
-    const data = {...this.state};
+    const data = { ...this.state };
     console.log(data)
 
 
@@ -28,13 +28,13 @@ class ManufacturerForm extends React.Component {
     };
     const response = await fetch(manufacturerUrl, fetchOptions);
     if (response.ok) {
-        const newManufacturer = await response.json();
-        console.log(newManufacturer);
-        
-        const cleared = {
-            name: '',
-        };
-        this.setState(cleared);
+      const newManufacturer = await response.json();
+      console.log(newManufacturer);
+
+      const cleared = {
+        name: '',
+      };
+      this.setState(cleared);
     }
   }
 
@@ -42,7 +42,7 @@ class ManufacturerForm extends React.Component {
   handleChange(event) {
     const newState = {}
     newState[event.target.id] = event.target.value;
-    this.setState( newState );
+    this.setState(newState);
   }
 
 
@@ -64,7 +64,7 @@ class ManufacturerForm extends React.Component {
       </div>
     );
   }
-  
+
 }
 
 export default ManufacturerForm;
