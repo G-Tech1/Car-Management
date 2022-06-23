@@ -35,6 +35,9 @@ class ServiceAppointmentEncoder(ModelEncoder):
     }
     
     def get_extra_data(self, o):
+        return {"status": o.status.name}
+
+    def get_extra_data(self, o):
         try:
             AutomobileVO.objects.get(vin=o.vin)
             return {"vip": True}

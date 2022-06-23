@@ -4,8 +4,12 @@ import React from 'react';
         constructor(props) {
             super(props);
             this.state = { 
+                vin: '',
                 services: []
-            }};
+            }
+
+            this.handleVinChange = this.handleVinChange.bind(this);
+        };
         
     async componentDidMount(){
         const url = "http://localhost:8080/api/service/";
@@ -23,13 +27,19 @@ import React from 'react';
         }
     }
 
+    handleVinChange(vin) {
+        const newServices = [...this.state.services]
+        newServices["vin"] = vin 
+        this.setState({ services: newServices });
+    }
     
 
     render() {
     return (
         <>
         <h1>Service History</h1>
-        <input type="text" ></input><button className="btn btn-primary me-1">search</button>
+        <input type="text" placeholder='Enter VIN'></input>
+        <button className="btn btn-primary me-1">search</button>
         <table className="table table-striped">
         <thead>
           <tr>
