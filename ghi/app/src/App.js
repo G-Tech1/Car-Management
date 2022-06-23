@@ -70,20 +70,20 @@ class App extends React.Component {
         <div className="container">
           <Routes>
             <Route path="/" element={<MainPage />} />
-            <Route path="/new/Customer/" element={<CustomerForm />} />
-            <Route path="/new/sales/" element={<SalesForm />} />
-            <Route path="/new/records/" element={<NewSaleForm />} />
-            <Route path="/records/" element={<SalesRecord records={this.state.records} />} />
+            <Route path="customer/new" element={<CustomerForm />} />
+            <Route path="sales/new" element={<SalesForm />} />
+            <Route path="records/new" element={<NewSaleForm />} />
+            <Route path="records" element={<SalesRecord records={this.state.records} />} />
             <Route path="/sales/records" element={<SalesPersonHistory person ={this.state.salesPerson} records ={this.state.records}/>} />
-            <Route path="/manufacturers/" element={<ManufacturerList manufacturer ={this.state.manufacturers}/>} />
-            <Route path="manufacturer" element={<ManufacturerForm />} />
+            <Route path="manufacturers" element={<ManufacturerList manufacturer ={this.state.manufacturers}/>} />
+            <Route path="manufacturer/new" element={<ManufacturerForm />} />
             <Route path="model" element={<VehicleModelForm />} />
             <Route path="automobile" element={<AutomobileForm />} />
             <Route path="service">
+              <Route path="technician" element={<TechnicianForm />} />
               <Route path="appointments" element={<ServiceAppointments/>} />
               <Route path="history" element={<ServiceHistory/>} />  
-              <Route path="technician" element={<TechnicianForm />} />
-              <Route path="" element={<ServiceForm />} />
+              <Route path="new" element={<ServiceForm />} />
             </Route>
             </Routes>
         </div>
