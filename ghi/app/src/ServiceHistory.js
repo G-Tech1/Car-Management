@@ -37,9 +37,8 @@ import React from 'react';
     render() {
     return (
         <>
-        <h1>Service History</h1>
-        <input type="text" placeholder='Enter VIN'></input>
-        <button className="btn btn-primary me-1">search</button>
+        <h1>Service Appointment History</h1>
+        <input type="search" placeholder='Enter VIN'></input>
         <table className="table table-striped">
         <thead>
           <tr>
@@ -53,7 +52,7 @@ import React from 'react';
           </tr>
         </thead>
         <tbody>
-        {this.state.services.map(appointment => {
+        {this.state.services.filter(services => services.vin === this.state.vin).map(appointment => {
             return (
             <tr key= {appointment.id}>
             <td>{appointment.vin}</td>
