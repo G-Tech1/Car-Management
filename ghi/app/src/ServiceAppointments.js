@@ -65,7 +65,7 @@ import React from 'react';
             <th>Customer</th>
             <th>Date</th>
             <th>Time</th>
-            <th>Description</th>
+            <th>Reason</th>
             <th>Technician</th>
             <th>Status</th>
           </tr>

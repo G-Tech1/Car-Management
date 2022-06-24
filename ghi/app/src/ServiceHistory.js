@@ -28,6 +28,9 @@ import React from 'react';
     }
     
 
+    
+    
+
     handleVinChange(event) {
         const value = event.target.value
         this.setState({ vin: value })
@@ -48,7 +51,7 @@ import React from 'react';
             <th>Customer</th>
             <th>Date</th>
             <th>Time</th>
-            <th>Description</th>
+            <th>Reason</th>
             <th>Technician</th>
             <th>Status</th>
           </tr>
@@ -73,7 +76,7 @@ import React from 'react';
             <tr key= {appointment.id}>
             <td>{appointment.vin}</td>
             <td>{appointment.customer}</td>
-            <td>{appointment.date}</td>
+            <td>{appointment.date.toLocaleString("en-US")}</td>
             <td>{appointment.time}</td>
             <td>{appointment.description}</td>
             <td>{appointment.technician.name}</td>

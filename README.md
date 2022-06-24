@@ -14,7 +14,7 @@ microservice, here.
 
 ### Models:
 
-**AutomobileVO:**
+**AutomobileVO**
 
 - Receives VIN #s from the inventory via service poller.
 
