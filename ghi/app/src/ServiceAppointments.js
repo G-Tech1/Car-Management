@@ -9,6 +9,7 @@ import React from 'react';
             }
         
         this.handleCompleteClick = this.handleCompleteClick.bind(this);
+        this.handleCancelClick = this.handleCancelClick.bind(this);
         };
     
 
