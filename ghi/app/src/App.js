@@ -15,8 +15,8 @@ import React from "react"
 import SalesRecord from './SalesRecord';
 import SalesPersonHistory from './SalePersonHistory';
 import ManufacturerList from './ManufacturerList';
-import AutoMobileList from './AutoMobilesList';
-import VehicleList from './VehicleList';
+import AutoMobileList from './Automobileslist';
+import VehicleList from './Vehiclelist';
 
 
 class App extends React.Component {
