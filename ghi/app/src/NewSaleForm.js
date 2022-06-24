@@ -60,7 +60,7 @@ class NewSaleForm extends React.Component {
 
 
     async handleSubmit(event) {
-        event.preventDefault();
+        // event.preventDefault();
         const data = { ...this.state };
         data.sales_person = data.salesPerson;
         data.sales_price = data.salesPrice;
@@ -91,7 +91,7 @@ class NewSaleForm extends React.Component {
                 customer: '',
                 salesPrice: '',
             }
-            this.setState(cleared)
+            event.setState(cleared)
         }
     }
     handleAutoChange(event) {
