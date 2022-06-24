@@ -6,12 +6,12 @@ Team:
 - Gilan- Auto Service
 
 ## Design
+This website is designed for a dealership which could be used for many things like creating an service appointment for your car, show the service history of every car. The website also allows you to create a new employee,be they a sales person or a technician, as well as creating a new customer, record every car sold and every employee that sold said car.
+
+The service, the inventory and the sales are all different microservice using the RESTful API model within their respective bounded context.
 
 
 ## Service microservice
-
-Explain your models and integration with the inventory
-microservice, here.
 
 ### Models:
 
