@@ -8,12 +8,13 @@ import React from 'react';
                 services: []
             }
         
-        this.handleClick = this.handleClick.bind(this);
+        this.handleCompleteClick = this.handleCompleteClick.bind(this);
+        this.handleCancelClick = this.handleCancelClick.bind(this);
         };
     
 
     async componentDidMount(){
-        const url = "http://localhost:8080/api/service/submitted";
+        const url = "http://localhost:8080/api/service/submitted/";
         const response = await fetch(url);
         if (response.ok) {
             const data = await response.json()
@@ -28,25 +29,29 @@ import React from 'react';
         }
     }
 
-    handleClick(serviceid) {
-        const newService = [...this.state.services];
-        const index = this.state.services.findIndex((service) => service.id === serviceid);
-        
-        console.log(newService)
-        console.log(index)
-
-        newService.splice(index, 1);
-
-        console.log(newService)
-
-        this.setState({
-            services: newService
-        }); 
-
-        console.log(newService)
+    async handleCompleteClick(serviceid) {
         console.log(this.state.services)
+        fetch(`http://localhost:8080/api/service/${serviceid}/complete/`, {
+            method: 'put',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(() => {
+            window.location.reload();
+        })
     }
     
+    async handleCancelClick(serviceid) {
+        console.log(this.state.services)
+        fetch(`http://localhost:8080/api/service/${serviceid}/cancel/`, {
+            method: 'put',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(() => {
+            window.location.reload();
+        })
+    }
 
     render() {
     return (
@@ -60,7 +65,7 @@ import React from 'react';
             <th>Customer</th>
             <th>Date</th>
             <th>Time</th>
-            <th>Description</th>
+            <th>Reason</th>
             <th>Technician</th>
             <th>Status</th>
           </tr>
@@ -77,8 +82,8 @@ import React from 'react';
             <td>{appointment.description}</td>
             <td>{appointment.technician.name}</td>
             <td>
-            <button onClick={() => this.handleClick(appointment.id)} type="button" className="btn btn-outline-danger me-2">Cancel</button>
-            <button onClick={() => this.handleClick(appointment.id)} type="button" className="btn btn-outline-success">Completed</button>
+            <button onClick={() => this.handleCancelClick(appointment.id)} type="button" className="btn btn-outline-danger me-2">Cancel</button>
+            <button onClick={() => this.handleCompleteClick(appointment.id)} type="button" className="btn btn-outline-success">Completed</button>
             </td>
             </tr>
             );

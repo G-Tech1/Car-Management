@@ -12,7 +12,7 @@ import React from 'react';
         };
         
     async componentDidMount(){
-        const url = "http://localhost:8080/api/service/";
+        const url = `http://localhost:8080/api/service/`;
         const response = await fetch(url);
         if (response.ok) {
             const data = await response.json()
@@ -26,20 +26,24 @@ import React from 'react';
             console.error(response)
         }
     }
-
-    handleVinChange(vin) {
-        const newServices = [...this.state.services]
-        newServices["vin"] = vin 
-        this.setState({ services: newServices });
-    }
     
+
+    
+    
+
+    handleVinChange(event) {
+        const value = event.target.value
+        this.setState({ vin: value })
+      }
+
 
     render() {
     return (
         <>
-        <h1>Service History</h1>
-        <input type="text" placeholder='Enter VIN'></input>
-        <button className="btn btn-primary me-1">search</button>
+        <h1>Service Appointment History</h1>
+        <input value={this.state.vin} onChange={this.handleVinChange}
+        type ='search' className='table table-hover' id='vin'
+        placeholder='Enter VIN' />
         <table className="table table-striped">
         <thead>
           <tr>
@@ -47,18 +51,32 @@ import React from 'react';
             <th>Customer</th>
             <th>Date</th>
             <th>Time</th>
-            <th>Description</th>
+            <th>Reason</th>
             <th>Technician</th>
             <th>Status</th>
           </tr>
         </thead>
         <tbody>
-        {this.state.services.map(appointment => {
+        {this.state.vin ==='' ? this.state.services.map(appointment => {
             return (
             <tr key= {appointment.id}>
             <td>{appointment.vin}</td>
             <td>{appointment.customer}</td>
             <td>{appointment.date}</td>
+            <td>{appointment.time}</td>
+            <td>{appointment.description}</td>
+            <td>{appointment.technician.name}</td>
+            <td>{appointment.status.name}</td>
+            </tr>
+            );
+        }) : this.state.services.filter(
+            service => service.vin === this.state.vin).map(
+                appointment => {
+            return (
+            <tr key= {appointment.id}>
+            <td>{appointment.vin}</td>
+            <td>{appointment.customer}</td>
+            <td>{appointment.date.toLocaleString("en-US")}</td>
             <td>{appointment.time}</td>
             <td>{appointment.description}</td>
             <td>{appointment.technician.name}</td>

@@ -77,16 +77,16 @@ function Nav() {
               <NavLink className="nav-link" aria-current="page" to="automobile">
                 Add Automobile
               </NavLink>
-              <li className="nav-item">
-                <NavLink className="nav-link" aria-current="page" to="models">
-                  Models
-                </NavLink>
-                <li className="nav-item">
-                  <NavLink className="nav-link" aria-current="page" to="automobiles">
-                    Automobiles
-                  </NavLink>
-                </li>
-              </li>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" aria-current="page" to="models">
+                Models
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" aria-current="page" to="automobiles">
+                Automobiles
+              </NavLink>
             </li>
           </ul>
         </div>
