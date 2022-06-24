@@ -8,7 +8,6 @@ import React from 'react';
                 services: []
             }
 
-            // this.handleOnSubmit = this.handleOnSubmit.bind(this);
             this.handleVinChange = this.handleVinChange.bind(this);
         };
         
@@ -27,42 +26,13 @@ import React from 'react';
             console.error(response)
         }
     }
-
-
-    // async handleOnSubmit(event) {
-    //     event.preventDefault()
-    //     const newState = [...this.state ]
-    //     delete newState.services 
-    //     // const servicesUrl = `http://localhost:8080/api/service/`;
-    //     // const fetchConfig = {
-    //     //     method: "get",
-    //     //     headers: { 'Content-Type': 'application/json' },
-    //     // }
-    //     // const response = await fetch(servicesUrl, fetchConfig)
-    //     // if (response.ok) {
-    //         // const newHistory = await response.json();
-    //         // this.state.services = newHistory.services
-    //         // console.log(newHistory)
-    //     const filtered = this.state.services.filter(obj =>{
-    //         return obj.vin === this.state.vin
-    //     })
-    //     console.log(filtered)
-    //     const cleared = {
-    //         service: ''
-    //     }
-    //     this.setState(cleared)
-    //     console.log(newState)
-    //     // } 
-
-        
-    // }
     
 
     handleVinChange(event) {
         const value = event.target.value
         this.setState({ vin: value })
       }
-    //   type="search"
+
 
     render() {
     return (
