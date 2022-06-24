@@ -118,11 +118,11 @@ class ServiceForm extends React.Component {
               </div>
               <div className="form-floating mb-3">
                 <input value={this.state.date} onChange={this.handleChangeDate} placeholder="Date" required type="date" name="date" id="date" className="form-control" />
-                <label htmlFor="date">Customer</label>
+                <label htmlFor="date">Date</label>
               </div>
               <div className="form-floating mb-3">
                 <input value={this.state.time} onChange={this.handleChangeTime} placeholder="Time" required type="time" name="time" id="time" className="form-control" />
-                <label htmlFor="time">Customer</label>
+                <label htmlFor="time">Time</label>
               </div>
               <div className="form-floating mb-3">
                 <input value={this.state.description} onChange={this.handleChangeDescription} placeholder="Description" required type="text" name="description" id="description" className="form-control" />

@@ -2,9 +2,8 @@
 
 Team:
 
-* Brandon- Auto Sales
+- Brandon- Auto Sales
 - Gilan- Auto Service
-
 
 ## Design
 
@@ -12,6 +11,37 @@ Team:
 
 Explain your models and integration with the inventory
 microservice, here.
+
+### Models:
+
+**AutomobileVO:**
+
+- Receives VIN #s from the inventory via service poller.
+
+**Status**
+
+- Provides 1 of 3 statuses for ServiceAppointment.
+  - submitted
+  - cancelled
+  - confirmed
+
+**Technician**
+
+- Provides a data table for technicians including:
+  - Name
+  - Employee Number
+
+**ServiceAppointment**
+
+- Provides a data table for service appointments including:
+  - VIP
+  - VIN
+  - Customer
+  - Date
+  - Time
+  - Description
+  - Technician (Foreign Key)
+  - Status (Foreign Key)
 
 ## Sales microservice
 
