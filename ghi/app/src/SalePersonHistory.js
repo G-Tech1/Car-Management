@@ -3,19 +3,19 @@ import { useState } from "react";
 function SalesPersonHistory(props) {
   let [search, setSearch] = useState();
 
-  function searchOnChange(event){
+  function searchOnChange(event) {
     setSearch(Number(event.target.value));
   }
 
   return (
     <>
       <h1>Sales Person History</h1>
-      <select onChange={searchOnChange} value = {search} id='sales_person' className="form-select">
+      <select onChange={searchOnChange} value={search} id='sales_person' className="form-select">
         <option value="">Choose a sales person</option>
         {props.person.map(person => {
           return (
             <option key={person.id} value={person.id}>{person.name}</option>
-            
+
           )
         })}
 
@@ -33,8 +33,7 @@ function SalesPersonHistory(props) {
           </tr>
         </thead>
         <tbody>
-          {props.records.filter(x => x.sales_person.id === search ).map(record => { 
-          {/* {props.records.filter(x => x.name === jake ).map(record => { */}
+          {props.records.filter(x => x.sales_person.id === search).map(record => {
             return (
               <tr key={record.href}>
                 <td>{record.customer.name}</td>
