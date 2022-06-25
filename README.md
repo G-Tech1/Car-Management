@@ -13,11 +13,10 @@ The status model needs to be populated with 3 specific instances "SUBMITTED", "C
 Because the statuses of the service appointments are a part of the service microservice we need to go into docker desktop and access the CLI of following container "project-beta_service_api_1"
 ![Docker Service API](pic1.png)
 
-Once inside the terminal, make any migrations that may appear and create a super user using the following command "python manage.py createsuperuser"
-only a username and password is required.
+Once inside the terminal, make any migrations that may appear and create a super user with the following command "python manage.py createsuperuser". **only a username and password is required**
 ![Create SuperUser](pic2.png)
 
-In the browser, access the admin page using the following URL. "http://localhost:8080/admin/" and sign in. Once logged into the admin page. go to the status model and create the following instances. "SUBMITTED", "COMPLETED", and "CANCELED".
+In the browser, access the admin page using the following URL "http://localhost:8080/admin/" and sign in. Once logged into the admin page, access the status model and create the following instances. "SUBMITTED", "COMPLETED", and "CANCELED".
 ![Statuses](pic3.png)
 
 ## Design
@@ -49,7 +48,7 @@ The service, the inventory and the sales are all different microservice using th
 
 ### Service Poller
 
-- Retrieves automobile objects as JSON from the inventory microservice via the automobile API. The poller then uses the VIN from this received data to update or creates new objects within the AutomobileVO model.
+- Retrieves automobile objects as JSON from the inventory microservice via the automobile API. The poller then uses the VIN from this received data to update or creates new objects within the AutomobileVO model. This is where the integration between the service microservice and the inventory microservice occurs.
 
 ### Models:
 
@@ -60,9 +59,9 @@ The service, the inventory and the sales are all different microservice using th
 **Status**
 
 - Provides 1 of 3 statuses for ServiceAppointment.
-  - submitted
-  - cancelled
-  - confirmed
+  - SUBMITTED
+  - COMPLETED
+  - CANCELED
 
 **Technician**
 
