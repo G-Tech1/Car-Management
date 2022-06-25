@@ -5,6 +5,21 @@ Team:
 - Brandon- Auto Sales
 - Gilan- Auto Service
 
+## MANDATORY INSTRUCTIONS BEFORE RUNNING APPLICATION
+
+In order to properly assign statuses to service appointments, please complete the following.
+The status model needs to be populated with 3 specific instances "SUBMITTED", "COMPLETED", and "CANCELED" via the admin page.
+
+Because the statuses of the service appointments are a part of the service microservice we need to go into docker desktop and access the CLI of following container "project-beta_service_api_1"
+![Docker Service API](pic1.png)
+
+Once inside the terminal, make any migrations that may appear and create a super user using the following command "python manage.py createsuperuser"
+only a username and password is required.
+![Create SuperUser](pic2.png)
+
+In the browser, access the admin page using the following URL. "http://localhost:8080/admin/" and sign in. Once logged into the admin page. go to the status model and create the following instances. "SUBMITTED", "COMPLETED", and "CANCELED".
+![Statuses](pic3.png)
+
 ## Design
 
 This website is designed for a dealership which could be used for many things like creating an service appointment for your car or showing the service history of every car. The website also allows you to create a new employee(ex. sales person or technician), as well as creating a new customer. The end user can record every car sold and every employee that sold said car.
