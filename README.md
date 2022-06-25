@@ -14,6 +14,7 @@ Because the statuses of the service appointments are a part of the service micro
 ![Docker Service API](pic1.png)
 
 Once inside the terminal, make any migrations that may appear and create a super user with the following command "python manage.py createsuperuser". **only a username and password is required**
+
 ![Create SuperUser](pic2.png)
 
 In the browser, access the admin page using the following URL "http://localhost:8080/admin/" and sign in. Once logged into the admin page, access the status model and create the following instances. "SUBMITTED", "COMPLETED", and "CANCELED".
