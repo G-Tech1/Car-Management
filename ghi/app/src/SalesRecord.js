@@ -5,6 +5,7 @@ function SalesRecord(props) {
         <tr>
           <th>Buyer</th>
           <th>Seller</th>
+          <th>Employee numbers</th>
           <th>Car vin number</th>
           <th>Price</th>
         </tr>
@@ -15,6 +16,7 @@ function SalesRecord(props) {
             <tr key={record.href}>
               <td>{record.customer.name}</td>
               <td>{record.sales_person.name}</td>
+              <td>{record.sales_person.employee_number}</td>
               <td>{record.auto.vin}</td>
               <td>{record.sales_price}</td>
             </tr>
