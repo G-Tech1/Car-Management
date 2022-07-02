@@ -11,6 +11,7 @@ In order to properly assign statuses to service appointments, please complete th
 The status model needs to be populated with 3 specific instances "SUBMITTED", "COMPLETED", and "CANCELED" via the admin page.
 
 Because the statuses of the service appointments are a part of the service microservice we need to go into docker desktop and access the CLI of following container "car-management_service_api_1"
+
 ![Docker Service API](pic1.png)
 
 Once inside the terminal, make any migrations that may appear and create a super user with the following command "python manage.py createsuperuser". **only a username and password is required**
