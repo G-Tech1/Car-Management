@@ -13,14 +13,11 @@ class ServiceForm extends React.Component {
       technicians: [],
     }
 
+
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChangeVin = this.handleChangeVin.bind(this);
-    this.handleChangeCustomer = this.handleChangeCustomer.bind(this);
-    this.handleChangeDate = this.handleChangeDate.bind(this);
-    this.handleChangeTime = this.handleChangeTime.bind(this);
-    this.handleChangeDescription = this.handleChangeDescription.bind(this);
-    this.handleChangeTechnician = this.handleChangeTechnician.bind(this);
+    this.handleChangeVin = this.handleChange.bind(this);
   }
+
 
   async componentDidMount() {
     const url = 'http://localhost:8080/api/technician/';
@@ -31,7 +28,6 @@ class ServiceForm extends React.Component {
       console.log(data)
     }
   }
-
 
 
   async handleSubmit(event) {
@@ -57,49 +53,17 @@ class ServiceForm extends React.Component {
         const newService = await serviceResponse.json();
         console.log(newService);
         
-        const cleared = {
-            vin: '',
-            customer: '',
-            date: '',
-            time: '',
-            description: '',
-            technician:'',
-        };
-        
-        this.setState(cleared);
+        this.setState(this.state);
     }
   }
 
 
-  handleChangeVin(event) {
-    const value = event.target.value;
-    this.setState({ vin: value });
+  handleChange(event) {
+    const newState = {};
+    newState[event.target.id] = event.target.value;
+    this.setState(newState);
   }
 
-  handleChangeCustomer(event) {
-    const value = event.target.value;
-    this.setState({ customer: value });
-  }
-
-  handleChangeDate(event) {
-    const value = event.target.value;
-    this.setState({ date: value });
-  }
-
-  handleChangeTime(event) {
-    const value = event.target.value;
-    this.setState({ time: value });
-  }
-
-  handleChangeDescription(event) {
-    const value = event.target.value;
-    this.setState({ description: value });
-  }
-
-  handleChangeTechnician(event) {
-    const value = event.target.value;
-    this.setState({ technician: value });
-  }
 
   render() {
     return (
@@ -109,27 +73,27 @@ class ServiceForm extends React.Component {
             <h1>Create a Service Appointment</h1>
             <form onSubmit={this.handleSubmit} id="create-service-form">
               <div className="form-floating mb-3">
-                <input value={this.state.vin} onChange={this.handleChangeVin} placeholder="VIN" required type="text" name="vin" id="vin" className="form-control" />
+                <input value={this.state.vin} onChange={this.handleChange} placeholder="VIN" required type="text" name="vin" id="vin" className="form-control" />
                 <label htmlFor="vin">VIN</label>
               </div>
               <div className="form-floating mb-3">
-                <input value={this.state.customer} onChange={this.handleChangeCustomer} placeholder="Customer" required type="text" name="customer" id="customer" className="form-control" />
+                <input value={this.state.customer} onChange={this.handleChange} placeholder="Customer" required type="text" name="customer" id="customer" className="form-control" />
                 <label htmlFor="customer">Customer</label>
               </div>
               <div className="form-floating mb-3">
-                <input value={this.state.date} onChange={this.handleChangeDate} placeholder="Date" required type="date" name="date" id="date" className="form-control" />
+                <input value={this.state.date} onChange={this.handleChange} placeholder="Date" required type="date" name="date" id="date" className="form-control" />
                 <label htmlFor="date">Date</label>
               </div>
               <div className="form-floating mb-3">
-                <input value={this.state.time} onChange={this.handleChangeTime} placeholder="Time" required type="time" name="time" id="time" className="form-control" />
+                <input value={this.state.time} onChange={this.handleChange} placeholder="Time" required type="time" name="time" id="time" className="form-control" />
                 <label htmlFor="time">Time</label>
               </div>
               <div className="form-floating mb-3">
-                <input value={this.state.description} onChange={this.handleChangeDescription} placeholder="Description" required type="text" name="description" id="description" className="form-control" />
+                <input value={this.state.description} onChange={this.handleChange} placeholder="Description" required type="text" name="description" id="description" className="form-control" />
                 <label htmlFor="description">Description</label>
               </div>
               <div className="mb-3">
-                <select value={this.state.technician} onChange={this.handleChangeTechnician} required name="technician" id="technician" className="form-select">
+                <select value={this.state.technician} onChange={this.handleChange} required name="technician" id="technician" className="form-select">
                     <option value="">Choose a technician</option>
                     {this.state.technicians.map(technician => {
                         return (

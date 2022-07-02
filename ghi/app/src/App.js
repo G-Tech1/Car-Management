@@ -72,15 +72,15 @@ class App extends React.Component {
         <div className="container">
           <Routes>
             <Route path="/" element={<MainPage />} />
-            <Route path="customer/new" element={<CustomerForm />} />
-            <Route path="sales/new" element={<SalesForm />} />
-            <Route path="records/new" element={<NewSaleForm />} />
+            <Route path="customer" element={<CustomerForm />} />
+            <Route path="salesperson" element={<SalesForm />} />
+            <Route path="sales" element={<SalesPersonHistory person={this.state.salesPerson} records={this.state.records} />} />
+            <Route path="record" element={<NewSaleForm />} />
             <Route path="records" element={<SalesRecord records={this.state.records} />} />
-            <Route path="/sales/records" element={<SalesPersonHistory person={this.state.salesPerson} records={this.state.records} />} />
             <Route path="manufacturers" element={<ManufacturerList manufacturers={this.state.manufacturers} />} />
+            <Route path="manufacturer" element={<ManufacturerForm />} />
             <Route path="automobiles" element={<AutoMobileList autos={this.state.autos} />} />
             <Route path="models" element={<VehicleList models={this.state.models} />} />
-            <Route path="manufacturer/new" element={<ManufacturerForm />} />
             <Route path="model" element={<VehicleModelForm />} />
             <Route path="automobile" element={<AutomobileForm />} />
             <Route path="service">

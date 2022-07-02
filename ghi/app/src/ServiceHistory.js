@@ -1,15 +1,15 @@
 import React from 'react';
 
-    class ServiceHistory extends React.Component {
-        constructor(props) {
-            super(props);
-            this.state = { 
-                vin: '',
-                services: []
-            }
+class ServiceHistory extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { 
+            vin: '',
+            services: []
+        }
 
-            this.handleVinChange = this.handleVinChange.bind(this);
-        };
+        this.handleChange = this.handleChange.bind(this);
+    };
         
     async componentDidMount(){
         const url = `http://localhost:8080/api/service/`;
@@ -26,14 +26,12 @@ import React from 'react';
             console.error(response)
         }
     }
-    
 
-    
-    
 
-    handleVinChange(event) {
-        const value = event.target.value
-        this.setState({ vin: value })
+    handleChange(event) {
+        const newState = {};
+        newState[event.target.id] = event.target.value;
+        this.setState(newState);
       }
 
 
@@ -41,7 +39,7 @@ import React from 'react';
     return (
         <>
         <h1>Service Appointment History</h1>
-        <input value={this.state.vin} onChange={this.handleVinChange}
+        <input value={this.state.vin} onChange={this.handleChange}
         type ='search' className='table table-hover' id='vin'
         placeholder='Enter VIN' />
         <table className="table table-striped">

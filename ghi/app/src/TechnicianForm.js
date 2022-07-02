@@ -9,8 +9,7 @@ class TechnicianForm extends React.Component {
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChangeName = this.handleChangeName.bind(this);
-    this.handleChangeEmployeeNumber = this.handleChangeEmployeeNumber.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   async handleSubmit(event) {
@@ -35,24 +34,17 @@ class TechnicianForm extends React.Component {
         const newTechnician = await technicianResponse.json();
         console.log(newTechnician);
         
-        const cleared = {
-            name: '',
-            employeeNumber: '',
-        };
-        this.setState(cleared);
+        this.setState(this.state);
     }
   }
 
 
-  handleChangeName(event) {
-    const value = event.target.value;
-    this.setState({ name: value });
+  handleChange(event) {
+    const newState = {};
+    newState[event.target.id] = event.target.value;
+    this.setState(newState);
   }
 
-  handleChangeEmployeeNumber(event) {
-    const value = event.target.value;
-    this.setState({ employeeNumber: value });
-  }
 
   render() {
     return (
@@ -62,11 +54,11 @@ class TechnicianForm extends React.Component {
             <h1>Add A Technician</h1>
             <form onSubmit={this.handleSubmit} id="create-technician-form">
               <div className="form-floating mb-3">
-                <input value={this.state.name} onChange={this.handleChangeName} placeholder="Name" required type="text" name="name" id="name" className="form-control" />
+                <input value={this.state.name} onChange={this.handleChange} placeholder="Name" required type="text" name="name" id="name" className="form-control" />
                 <label htmlFor="name">Name</label>
               </div>
               <div className="form-floating mb-3">
-                <input value={this.state.employeeNumber} onChange={this.handleChangeEmployeeNumber} placeholder="Employee Number" required type="number" name="employee_number" id="employee_number" className="form-control" />
+                <input value={this.state.employeeNumber} onChange={this.handleChange} placeholder="Employee Number" required type="number" name="employee_number" id="employee_number" className="form-control" />
                 <label htmlFor="employee_number">Employee Number</label>
               </div>
               <button className="btn btn-primary">Add</button>

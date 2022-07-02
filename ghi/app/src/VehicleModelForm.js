@@ -47,12 +47,7 @@ class VehicleModelForm extends React.Component {
         const newVehicleModel = await vehicleModelResponse.json();
         console.log(newVehicleModel);
         
-        const cleared = {
-            name: '',
-            pictureUrl: '',
-            manufacturer_id: '',
-        };
-        this.setState(cleared);
+        this.setState(this.state);
     }
   }
 

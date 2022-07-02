@@ -1,16 +1,16 @@
 import React from 'react';
 
 
-    class ServiceAppointments extends React.Component {
-        constructor(props) {
-            super(props);
-            this.state = { 
-                services: []
-            }
-        
-        this.handleCompleteClick = this.handleCompleteClick.bind(this);
-        this.handleCancelClick = this.handleCancelClick.bind(this);
-        };
+class ServiceAppointments extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { 
+            services: []
+        }
+    
+    this.handleCompleteClick = this.handleCompleteClick.bind(this);
+    this.handleCancelClick = this.handleCancelClick.bind(this);
+    };
     
 
     async componentDidMount(){
