@@ -1,4 +1,9 @@
-# CarCar
+# Car Management
+
+Team:
+
+- Brandon- Auto Sales
+- Gilan- Auto Service
 
 
 ## MANDATORY INSTRUCTIONS BEFORE RUNNING APPLICATION
